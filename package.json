@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "gulp dist"
+  },
   "devDependencies": {
     "del": "*",
     "gulp": "*",

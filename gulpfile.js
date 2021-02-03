@@ -1,3 +1,4 @@
+const { dest } = require('gulp');
 var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	plumber = require('gulp-plumber'),
@@ -45,7 +46,7 @@ gulp.task('compress-images', function(){
 
 //Clean
 gulp.task('clean', function(){
-	return del(['dist/js', 'dist/css', 'dist/assets/img']);
+	return del(['dist']);
 });
 
 //Watch js lint
@@ -56,11 +57,18 @@ gulp.task('js-lint', function(){
 	.pipe(jshint.reporter())
 });
 
-gulp.task('default', gulp.series('clean', 'js-lint-all', 'css', 'compress-images', function(done){
+gulp.task('dist', gulp.series('clean', 'js-lint-all', 'css', 'compress-images', function(done){
+	// Copy php files
 	gulp.src('*.php')
 	.pipe(gulp.dest('dist/'));
+
+	// Copy assets files
 	gulp.src(['assets/libs', 'assets/scripts', 'assets/snippets'])
 	.pipe(gulp.dest('dist/assets'));
+
+	gulp.src('assets/schema/*.sql')
+	.pipe(concat('schema.sql'))
+	.pipe(gulp.dest('dist'));
 
 	done();
 }));
