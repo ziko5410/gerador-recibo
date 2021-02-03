@@ -50,16 +50,17 @@ gulp.task('clean', function(){
 
 //Watch js lint
 gulp.task('js-lint', function(){
-	gulp.src('js/*.js')
+	return gulp.src('js/*.js')
 	.pipe(plumber())
 	.pipe(jshint())
 	.pipe(jshint.reporter())
 });
 
-gulp.task('default', ['clean'], function(){
-	gulp.start('js-lint-all', 'css', 'compress-images');
+gulp.task('default', gulp.series('clean', 'js-lint-all', 'css', 'compress-images', function(done){
 	gulp.src('*.php')
 	.pipe(gulp.dest('dist/'));
 	gulp.src(['assets/libs', 'assets/scripts', 'assets/snippets'])
 	.pipe(gulp.dest('dist/assets'));
-});
+
+	done();
+}));
