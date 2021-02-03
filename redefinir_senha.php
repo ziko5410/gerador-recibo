@@ -1,4 +1,6 @@
 <?php
+  require_once "assets/scripts/setup.php";
+
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
 	//Controla quando mostrar o paragrafo de erro
@@ -18,7 +20,7 @@
 
 				//Validação do captcha
 				$captcha_data = $_POST["g-recaptcha-response"];
-				$secret = "6LcNMRIUAAAAAFZy7kk1E82KP7Y2Ga-GrVL3DHW1";
+				$secret = $_ENV['CAPTCHA_SECRET'];
 
 				$utils = new Utils();
 
@@ -122,7 +124,7 @@
 												}
 												else{
 													$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
-												}	
+												}
 											}
 											else{
 												$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
@@ -160,9 +162,9 @@
 			header("Location: index.php");
 			exit;
 		}
-		
+
 		$BD_Connection->close();
-		
+
 	}//if( (require_once "assets/scripts/connect.php") == true )
 	else{
 		$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
@@ -231,7 +233,7 @@
 				<input type="text" id="inCodigo" name="codigo" class="form-control bom-senso" placeholder="Código" maxlength="6" required autofocus>
 
 				<!--INSERIR UM CAPTCHA AQUI-->
-				<div class="g-recaptcha" data-sitekey="6LcNMRIUAAAAABzY_xK8d0LstzpduOi9_VcfdkU7"></div>
+				<div class="g-recaptcha" data-sitekey="<?php $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
 
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Redefinir</button>
 

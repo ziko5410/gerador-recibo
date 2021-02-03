@@ -1,4 +1,6 @@
 <?php
+  require_once "assets/scripts/setup.php";
+
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
 
@@ -10,7 +12,7 @@
 
 				//Validação do captcha
 				$captcha_data = $_POST["g-recaptcha-response"];
-				$secret = "6LcNMRIUAAAAAFZy7kk1E82KP7Y2Ga-GrVL3DHW1";
+				$secret = $_ENV['CAPTCHA_SECRET'];
 
 				$utils = new Utils();
 
@@ -48,7 +50,7 @@
 						else{
 							$nome = $utils->checkInput($nome);
 						}
-							
+
 						//Validação do email
 						if(empty($email)){
 							$form_error = "Digite um email.";
@@ -93,20 +95,20 @@
 						$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
 					}
 					else{
-					
+
 						//Realiza uma busca no banoc pelo email digitado para checar se já exite um cadastro
 						$sql = $BD_Connection->prepare("SELECT * FROM $BD_Users_table WHERE $BD_Email_field = ?");
-							
+
 						if($sql){
 							$sql->bind_param('s', $email);
-							
+
 							if($sql->execute()){
 
 								$resultado = $sql->get_result();
 								$sql = null;
 
 								$dados = $resultado->fetch_assoc();
-								
+
 								//Checa se o email digitado já existe
 								if( ($resultado->num_rows <= 0) || (!isset($dados[$BD_Email_field])) ){
 									mysqli_free_result($resultado);
@@ -165,7 +167,7 @@
 		}//if($_SERVER["REQUEST_METHOD"] == "POST")
 
 		$BD_Connection->close();
-		
+
 	}//if( (require_once "assets/scripts/connect.php") == true )
 
 ?>
@@ -234,7 +236,7 @@
 				<input type="password" id="inSenhaConf" name="senhaconf" class="form-control bom-senso" placeholder="Confirme sua senha" data-toggle="tooltip" data-placement="right" title="Confirme a senha que você criou ali em cima." maxlength="12" required>
 
 				<!--INSERIR UM CAPTCHA AQUI-->
-				<div class="g-recaptcha" data-sitekey="6LcNMRIUAAAAABzY_xK8d0LstzpduOi9_VcfdkU7"></div>
+				<div class="g-recaptcha" data-sitekey="<?php $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
 
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Cadastrar-se</button>
 
@@ -252,7 +254,7 @@
 		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
 		<script src="js/form_validation.js" type="text/javascript"></script>
-		
+
 		<script type="text/javascript">
 
 		//Habilita as tooltips

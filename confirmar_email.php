@@ -155,17 +155,17 @@
 					$mail -> IsSMTP();
 					$mail -> SMTPDebug = 1;
 					$mail -> SMTPAuth = true;
-					$mail -> SMTPSecure = 'ssl';//Obrigatório para gmail
-					$mail -> Host = 'smtp.gmail.com';
-					$mail -> Port = 465;
+					$mail -> SMTPSecure = $_ENV['SMTP_SECURE'] == 'true' ? 'ssl' : '';//Obrigatório para gmail
+					$mail -> Host = $_ENV['SMTP_HOST'];
+					$mail -> Port = $_ENV['SMTP_PORT'];
 					$mail -> IsHTML(true);
-					$mail -> Username='recibeira.site@gmail.com';//
-					$mail -> Password='r3c1b31r451t3';//
+					$mail -> Username=$_ENV['SMTP_USER'];//
+					$mail -> Password=$_ENV['SMTP_PASSWORD'];//
 					$mail -> SetFrom('noreply@recibeira.com', 'Recibeira');
 					$mail -> Subject=$assunto;
 					$mail -> Body=$mensagem;
 					$mail -> AddAddress($email);
-					
+
 					if($mail -> Send()){
 						return true;
 					}
@@ -187,7 +187,7 @@
 
 						if($sql){
 							$sql->bind_param('s', $email_hash);
-							
+
 							if($sql->execute()){
 
 								$resultado = $sql->get_result();
@@ -202,7 +202,7 @@
 										$email_to_mail = $obj[$BD_Email_field];
 										$cod = $obj[$BD_Acc_code_field];
 										$hash = $obj[$BD_Email_hash_field];
-										
+
 										if(!sendConfirmationMail($email_to_mail, $cod, $hash)){
 											$form_error="Não foi possível enviar o email. Atualize a página e se o problema persistir tente novamente mais tarde.";
 										}
@@ -212,7 +212,7 @@
 										//Redireciona para o login
 										header("Location: login.php");
 									}
-									
+
 								}
 								else{
 									$form_error="Parece que você ainda não criou uma conta. <a href='registrar.php'>Crie uma agora.</a>";
@@ -243,7 +243,7 @@
 
 		//Submit do código com POST
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
-			
+
 			if( (require_once "assets/scripts/utils.class.php") == true){
 
 				$codigo = $_POST["codigo"];
@@ -313,7 +313,7 @@
 										}
 										else{
 											$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
-										}	
+										}
 									}
 									else{
 										$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
@@ -403,7 +403,7 @@
 		</div>
 
 		<?php include "assets/snippets/footer.php"; ?>
-		
+
 		<!--JavaScript-->
 		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="js/form_validation.js" type="text/javascript"></script>
