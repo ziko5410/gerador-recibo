@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.search-bar{
+	padding: 25px;
+	background-color: #fff;
+	border-radius: 10px;
+	border: 1px solid #e1e1e1;
+}
+
+form{
+	margin: 0px;
+}
+
+form input{
+	display: inline-block !important;
+}

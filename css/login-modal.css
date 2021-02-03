@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*Estilos do formulário de login*/
+
+input[type="email"]{
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	margin: 0;
+}
+
+input[type="password"]{
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	margin: 0;
+}
+
+@media only screen and (max-width: 768px){
+
+	input[type="password"]{
+		margin-bottom: 15px;
+	}
+
+}

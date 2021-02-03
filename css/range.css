@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+/*Estilo da barra do input range*/
+input[type=range]{
+	/* Hides the slider so that custom slider can be made */
+	-webkit-appearance: none;
+	/* Specific width is required for Firefox. */
+	width: 100%;
+	/* Otherwise white in Chrome */
+	background: transparent;
+	margin-top: 15px;
+	margin-bottom: 15px !important;
+}
+
+input[type=range]::-webkit-slider-thumb{
+	-webkit-appearence: none;
+}
+
+input[type=range]:focus{
+	/* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+	outline: none;
+}
+
+input[type=range]::-ms-track{
+	width: 100%;
+	cursor: pointer;
+	/* Hides the slider so custom styles can be added */
+	background: transparent;
+	border-color: transparent;
+	color: transparent;
+}
+
+/*Estilo do thumb do input range*/
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	border: 1px solid #ccc;
+	height: 25px;
+	width: 15px;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+	/* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+	margin-top: -10px;
+}
+
+input[type=range]:hover::-webkit-slider-thumb{
+	background: #e6e6e6;
+	border-color: #adadad;
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb{
+	border: 1px solid #ccc;
+	height: 25px;
+	width: 15px;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+}
+
+input[type=range]:hover::-moz-range-thumb{
+	background: #e6e6e6;
+	border-color: #adadad;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb{
+	border: 1px solid #ccc;
+	height: 25px;
+	width: 15px;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+}
+
+input[type=range]:hover::-ms-thumb{
+	background: #e6e6e6;
+	border-color: #adadad;
+}
+
+/*Estilos da barra (track)*/
+/*chrome*/
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+ 	height: 8.4px;
+  	cursor: pointer;
+  	background: #337ab7;
+  	border-radius: 7px;
+  	border: 0.2px solid #2e6da4;
+}
+
+/*chrome*/
+input[type=range]:focus::-webkit-slider-runnable-track{
+	background: #337ab7;
+}
+
+/*firefox*/
+input[type=range]::-moz-range-track{
+	width: 100%;
+  	height: 8.4px;
+  	cursor: pointer;
+  	background: #337ab7;
+  	border-radius: 7px;
+  	border: 0.2px solid #2e6da4;
+}
+
+/*IE*/
+input[type=range]::-ms-track{
+	width: 100%;
+  	height: 8.4px;
+  	cursor: pointer;
+  	background: transparent;
+ 	border-color: transparent;
+ 	border-width: 16px 0;
+  	color: transparent;
+}
+
+/*IE*/
+input[type=range]::-ms-fill-lower{
+  	background: #337ab7;
+  	border: 0.2px solid #2e6da4;
+  	border-radius: 7px;
+}
+
+/*IE*/
+input[type=range]:focus::-ms-fill-lower {
+  background: #337ab7;
+}
+
+/*IE*/
+input[type=range]::-ms-fill-upper {
+  background: #337ab7;
+  border: 0.2px solid #2e6da4;
+  border-radius: 7px;
+}
+
+/*IE*/
+input[type=range]:focus::-ms-fill-upper {
+  background: #337ab7;
+}
+
+@media only screen and (max-width: 768px){
+	/* Special styling for WebKit/Blink */
+	input[type=range]::-webkit-slider-thumb{
+		height: 25px;
+		width: 20px;
+	}
+
+	/* All the same stuff for Firefox */
+	input[type=range]::-moz-range-thumb{
+		height: 25px;
+		width: 20px;
+	}
+
+	/* All the same stuff for IE */
+	input[type=range]::-ms-thumb{
+		height: 25px;
+		width: 20px;
+	}
+}

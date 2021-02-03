@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+/*Estilos dos perfis de recibos*/
+
+.profile-card{
+	position: relative;
+	border-radius: 10px;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	padding: 25px 20px;
+	margin: 10px 0px;
+}
+
+/*Cards que ficarão do lado esquerdo*/
+.card-left{
+	border-right: none;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+/*Cards que ficarão do lado direito*/
+.card-right{
+	border-left: none;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/*Cards que ficar por último sozinho em uma linha*/
+.last-odd-card{
+	border: 1px solid #e1e1e1;
+	border-radius: 10px;
+}
+
+.profile-card > h1{
+	text-align: center;
+}
+
+.profile-card > a{
+	position: relative;
+	display: block;
+	width: 170px;
+	margin: auto;
+}
+
+.profile-info h1{
+	margin-top: 0;
+	font-size: 25px;
+}
+
+.profile-info p{
+	margin: 0;
+}
+
+.profile-info p:last-child{
+	margin-bottom: 10px;
+}
+
+div#cards .profile-card:last-child{
+	margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px){
+
+	.card-left, .card-right{
+		border: 1px solid #e1e1e1;
+		border-radius: 10px;
+	}
+	
+}

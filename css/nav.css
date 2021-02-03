@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+nav.navbar-default {
+    background-color: #054aa8
+}
+
+a.nav-link {
+    color: #fff !important
+}
+
+nav li a.nav-link:hover {
+    text-decoration: underline !important
+}
+
+nav img {
+    width: 35px;
+    height: 35px
+}
+
+.navbar-brand {
+    padding: 6px 15px
+}
+
+.navbar-brand img {
+    display: inline-block
+}
+
+.navbar-brand span {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #fff
+}
+
+ul.navbar-nav {
+    padding-right: 15px
+}
+
+.icon-bar {
+    background-color: #fff !important
+}
+
+button.navbar-toggle:hover,
+button.navbar-toggle:focus {
+    background-color: rgba(255, 255, 255, .3) !important
+}
+
+.profile-picture {
+    border-radius: 100%
+}
+
+@media only screen and (max-width: 768px) {
+
+    button#btn-login {
+        position: relative;
+        display: block;
+        border: none;
+        width: 100%;
+        background-color: transparent;
+        color: #fff;
+        padding: 10px 15px;
+        line-height: 20px;
+        margin: 0px;
+        text-align: left
+    }
+
+    button#btn-login:hover {
+        text-decoration: underline
+    }
+
+    button#btn-login:focus {
+        outline: none
+    }
+
+    .navbar-collapse {
+        border: none
+    }
+
+    /*Inverte a lista do menu*/
+    
+    div#navbar ul {
+        transform: rotate(180deg)
+    }
+
+    div#navbar ul li {
+        transform: rotate(-180deg)
+    }
+
+}
+

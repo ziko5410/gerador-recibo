@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-concat": "*",
+    "gulp-cssnano": "*",
+    "gulp-imagemin": "*",
+    "gulp-jshint": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "jshint": "*"
+  }
+}
