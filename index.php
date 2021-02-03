@@ -41,18 +41,18 @@
 						<span class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand" href="index.html"><img src="assets/img/brand-icon.png" alt="Recibeira logo"/><span>Recibeira</span></a>
+					<a class="navbar-brand" href="/"><img src="assets/img/brand-icon.png" alt="Recibeira logo"/><span>Recibeira</span></a>
 				</div>
 
 				<!--Navegação-->
 				<div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-	
+
 					<ul class="nav navbar-nav navbar-right">
 
 						<li><a href="registrar.php" class="nav-link">Sou novo aqui</a></li>
 						<!--Botão entrar abre um modal para o login-->
 						<li><button type="button" id="btn-login" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#login-modal-sm">Entrar</button></li>
-						
+
 					</ul>
 
 				</div>
@@ -94,7 +94,7 @@
 									</label>
 								</div>
 
-								
+
 							</div>
 
 							<button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
