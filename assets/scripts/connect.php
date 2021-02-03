@@ -1,5 +1,5 @@
 <?php
-  require_once "setup.php";
+  require_once __DIR__."/../../setup.php";
 
   //CONECTA NO BANCO DE DADOS//
 

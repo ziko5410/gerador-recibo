@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "composer install && gulp dist"
+    "build": "composer install && gulp dist",
+    "dev": "docker-compose up -d && php -S localhost:3333"
   },
   "devDependencies": {
     "del": "*",

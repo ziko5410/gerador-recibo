@@ -1,5 +1,5 @@
 <?php
-  require_once "assets/scripts/setup.php";
+  require_once "setup.php";
 
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
