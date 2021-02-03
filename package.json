@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "gulp dist"
+    "build": "composer install && gulp dist"
   },
   "devDependencies": {
     "del": "*",
