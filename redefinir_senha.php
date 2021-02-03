@@ -233,7 +233,7 @@
 				<input type="text" id="inCodigo" name="codigo" class="form-control bom-senso" placeholder="Código" maxlength="6" required autofocus>
 
 				<!--INSERIR UM CAPTCHA AQUI-->
-				<div class="g-recaptcha" data-sitekey="<?php $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
+				<div class="g-recaptcha" data-sitekey="<?php echo $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
 
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Redefinir</button>
 

@@ -236,7 +236,7 @@
 				<input type="password" id="inSenhaConf" name="senhaconf" class="form-control bom-senso" placeholder="Confirme sua senha" data-toggle="tooltip" data-placement="right" title="Confirme a senha que você criou ali em cima." maxlength="12" required>
 
 				<!--INSERIR UM CAPTCHA AQUI-->
-				<div class="g-recaptcha" data-sitekey="<?php $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
+				<div class="g-recaptcha" data-sitekey="<?php echo $_ENV['CAPTCHA_SITEKEY'] ?>"></div>
 
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Cadastrar-se</button>
 
