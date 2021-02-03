@@ -11,6 +11,11 @@ var gulp = require('gulp'),
 	//htmlhint_inline = require('gulp-htmlhint-inline');
 	del = require('del');
 
+gulp.copy = function (src, dest) {
+  return gulp.src(src, { base: "." })
+    .pipe(gulp.dest(dest));
+};
+
 //Scripts
 gulp.task('js-lint-all', function(){
 	return gulp.src('js/*.js')
@@ -57,18 +62,26 @@ gulp.task('js-lint', function(){
 	.pipe(jshint.reporter())
 });
 
-gulp.task('dist', gulp.series('clean', 'js-lint-all', 'css', 'compress-images', function(done){
-	// Copy php files
-	gulp.src('*.php')
-	.pipe(gulp.dest('dist/'));
+gulp.task(
+	'dist',
+	gulp.series(
+		'clean',
+		'js-lint-all',
+		'css',
+		'compress-images',
+		function(done){
+			// Copy php files
+      gulp.copy(['*.php', '.env', 'vendor/**/*'], 'dist/');
 
-	// Copy assets files
-	gulp.src(['assets/libs', 'assets/scripts', 'assets/snippets'])
-	.pipe(gulp.dest('dist/assets'));
+			// Copy assets files
+			gulp.copy(['assets/libs/**/*', 'assets/scripts/**/*', 'assets/snippets/**/*'], 'dist/');
 
-	gulp.src('assets/schema/*.sql')
-	.pipe(concat('schema.sql'))
-	.pipe(gulp.dest('dist'));
+      // Join all database definition files
+      gulp.src('assets/schema/*.sql')
+			.pipe(concat('schema.sql'))
+			.pipe(gulp.dest('dist'));
 
-	done();
-}));
+			done();
+		}
+	)
+);
