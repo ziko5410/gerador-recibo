@@ -4,7 +4,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "yarn build"
+      "php dist/migrate.php"
     ]
   }
 }

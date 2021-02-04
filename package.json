@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "gulp dist && php dist/migrate.php",
+    "build": "gulp dist",
     "dev": "docker-compose up -d && php -S localhost:3333"
   },
   "devDependencies": {
