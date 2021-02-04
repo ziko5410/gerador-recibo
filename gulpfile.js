@@ -71,7 +71,10 @@ gulp.task(
 		'compress-images',
 		function(done){
 			// Copy php files
-      gulp.copy(['*.php', '.env', 'vendor/**/*'], 'dist/');
+      gulp.copy(['*.php', 'vendor/**/*'], 'dist/');
+
+      // Copy .env file if exists
+      gulp.src('.env', { allowEmpty: true }, gulp.dest('dist/'));
 
 			// Copy assets files
 			gulp.copy(['assets/libs/**/*', 'assets/scripts/**/*', 'assets/snippets/**/*'], 'dist/');
