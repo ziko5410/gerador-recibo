@@ -8,6 +8,7 @@
   $BD_User = $_ENV['DB_USER'];
   $BD_Password = $_ENV['DB_PASSWORD'];
   $BD_Database = $_ENV['DB_NAME'];
+  $BD_Connection_url = $_ENV['JAWSDB_URL'];
 
   //Tabela
   $BD_Users_table = "usuarios";
@@ -41,6 +42,14 @@
   $BD_Referente_from_field = "referente_from";
   $BD_Referente_to_field = "referente_to";
   $BD_Data_recibo_field = "data_recibo";
+
+  if (!empty($BD_Connection_url)) {
+    // Extrai os campos da connection string
+    $BD_Database = substr($BD_Connection_url, strpos($BD_Connection_url, '/', 9) + 1);
+    $BD_Server = substr($BD_Connection_url, strpos($BD_Connection_url, '@') + 1, strlen($BD_Connection_url) - (strpos($BD_Connection_url, '@') + 1) - (strlen($BD_Database) + 1));
+    $BD_User = substr($BD_Connection_url, strpos($BD_Connection_url, '//') + 2, strpos($BD_Connection_url, ':', 9) - (strpos($BD_Connection_url, '//') + 2));
+    $BD_Password = substr($BD_Connection_url, strpos($BD_Connection_url, ':', 9) + 1, strpos($BD_Connection_url, '@', 9) - (strpos($BD_Connection_url, ':', 9) + 1));
+  }
 
   $BD_Connection = mysqli_connect($BD_Server, $BD_User, $BD_Password);
 
