@@ -42,9 +42,9 @@
 
 					if($sql){
 						$sql->bind_param('i', $uid);
-						
+
 						if($sql->execute()){
-						
+
 							$resultado = $sql->get_result();
 							$sql = null;
 
@@ -70,8 +70,8 @@
 
 									 	if($sql->execute()){
 									 		//Salva os cookies com o token e o id, que serão usados para validar a sessão numa visita futura
-									 		setcookie("uid", $obj[$BD_User_id_field], time()*24*60*60*7);
-											setcookie("tk", $token, time()*24*60*60*7);
+									 		setcookie("uid", $obj[$BD_User_id_field], time() + 24*60*60*7);
+											setcookie("tk", $token, time() + 24*60*60*7);
 
 											if( (stripos($_SERVER['PHP_SELF'], "home.php") === false) && (stripos($_SERVER['PHP_SELF'], "recibar.php") === false) ){
 
@@ -107,5 +107,5 @@
 		}//if(isset($_COOKIE["uid"]) && isset($_COOKIE["tk"]))
 
 	}//if(isset($_SESSION["id"]))
-	
+
 ?>
