@@ -29,4 +29,8 @@ function executeScriptFile($fileName, $dbConnection) {
   }
 }
 
+printf('Executing database migrations...');
+
 executeScriptFile(__DIR__.'/schema.sql', $BD_Connection);
+
+printf('Finished migrating.');

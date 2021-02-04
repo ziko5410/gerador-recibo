@@ -1,5 +1,10 @@
 {
-    "require": {
-        "vlucas/phpdotenv": "^5.3"
-    }
+  "require": {
+    "vlucas/phpdotenv": "^5.3"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "yarn build"
+    ]
+  }
 }
