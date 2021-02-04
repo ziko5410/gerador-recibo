@@ -121,7 +121,7 @@
 
                 <thead>
                   <tr>
-                    <th class='header-link'><a href='".$_ENV['APP_URL']."'><img src='assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
+                    <th class='header-link'><a href='".$_ENV['APP_URL']."'><img src='".$_ENV['APP_URL']."/assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
                   </tr>
                 </thead>
 
