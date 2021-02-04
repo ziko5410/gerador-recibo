@@ -4,7 +4,7 @@
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
 
-	if( (require_once "assets/scripts/connect.php") == true && (require_once "assets/scripts/check_session.php") == true && (require_once "assets/scripts/utils.class.php") == true && (require_once "assets/scripts/class.phpmailer.php") == true){
+	if( (require_once "assets/scripts/connect.php") == true && (require_once "assets/scripts/check_session.php") == true && (require_once "assets/scripts/utils.class.php") == true){
 
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -160,7 +160,7 @@
 										<tr>
 											<td class='mail-content'>
 						                        <p>Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador.</p>
-						                        <a href='".$_ENV['APP_URL']."/redefinir_senha?e=$email_hash'>".$_ENV['APP_URL']."/redefinir_senha.php?e=".$email_hash."</a>
+						                        <a href='".$_ENV['APP_URL']."/redefinir_senha.php?e=$email_hash'>".$_ENV['APP_URL']."/redefinir_senha.php?e=".$email_hash."</a>
 
 						                        <a href='".$_ENV['APP_URL']."/redefinir_senha.php?e=$email_hash' class='btn'>Redefinir</a><br>
 
@@ -189,13 +189,13 @@
 					$mail -> IsSMTP();
 					$mail -> SMTPDebug = 1;
 					$mail -> SMTPAuth = true;
-					$mail -> SMTPSecure = 'ssl';//Obrigatório para gmail
-					$mail -> Host = 'smtp.gmail.com';
-					$mail -> Port = 465;
-					$mail -> IsHTML(true);
-					$mail -> Username='recibeira.site@gmail.com';//
-					$mail -> Password='r3c1b31r451t3';//
-					$mail -> SetFrom('noreply@recibeira.com', 'Recibeira');
+          $mail -> SMTPSecure = $_ENV['SMTP_SECURE'] == 'true' ? 'ssl' : '';//Obrigatório para gmail
+          $mail -> Host = $_ENV['SMTP_HOST'];
+          $mail -> Port = $_ENV['SMTP_PORT'];
+          $mail -> IsHTML(true);
+          $mail -> Username=$_ENV['SMTP_USER'];//
+          $mail -> Password=$_ENV['SMTP_PASSWORD'];//
+          $mail -> SetFrom($_ENV['SMTP_USER'], 'Recibeira');
 					$mail -> Subject=$assunto;
 					$mail -> Body=$mensagem;
 					$mail -> AddAddress($email);
