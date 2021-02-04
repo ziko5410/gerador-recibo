@@ -71,7 +71,7 @@
 						$pdf->Write($line_height, utf8_decode("Referente: $referentefrom a $referenteto"));
 						$pdf->Ln(1.7);
 
-						$pdf->Write($line_height, utf8_decode( justificaValorAluguel("ALUGUEL#R$ 700,00", $pdf) ) );
+						$pdf->Write($line_height, utf8_decode( justificaValorAluguel("ALUGUEL#R$ ", number_format($aluguel,2,",","."), $pdf) ) );
 
 						$pdf->Ln(1.7);
 						$pdf->Write($line_height, utf8_decode("$cidade, $data \n"));
