@@ -1,4 +1,6 @@
 <?php
+  use PHPMailer\PHPMailer\PHPMailer;
+
   require_once "setup.php";
 
 	//mensagem de erro exibida ao usuário
@@ -25,7 +27,7 @@
 				$email = $utils->checkInput($email);
 
 				function sendRecoverMail($email, $cod, $email_hash){
-					$assunto = "Confirme seu email para ter acesso completo à sua conta.";
+					$assunto = "Redefinição de senha de acesso";
 					$mensagem = "
 						<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 						<html xmlns='http://www.w3.org/1999/xhtml'>
@@ -187,7 +189,6 @@
 					$mail = new PHPMailer();
 					$mail -> CharSet = "UTF-8";
 					$mail -> IsSMTP();
-					$mail -> SMTPDebug = 1;
 					$mail -> SMTPAuth = true;
           $mail -> SMTPSecure = $_ENV['SMTP_SECURE'] == 'true' ? 'ssl' : '';//Obrigatório para gmail
           $mail -> Host = $_ENV['SMTP_HOST'];

@@ -1,4 +1,6 @@
 <?php
+  use PHPMailer\PHPMailer\PHPMailer;
+
   require_once "setup.php";
 
 	//mensagem de erro exibida ao usuário
@@ -153,7 +155,6 @@
         $mail = new PHPMailer();
         $mail -> CharSet = "UTF-8";
         $mail -> IsSMTP();
-        $mail -> SMTPDebug = 1;
         $mail -> SMTPAuth = true;
         $mail -> SMTPSecure = $_ENV['SMTP_SECURE'] == 'true' ? 'ssl' : '';//Obrigatório para gmail
         $mail -> Host = $_ENV['SMTP_HOST'];

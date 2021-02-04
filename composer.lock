@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b6c2ebd5782e90c7ad780065277dd8f",
+    "content-hash": "d04e138244d5c2932f21d1d79071a492",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -74,45 +74,58 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.4",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "adb0197c106fad05c1fab28dbed5437133836c44"
+                "reference": "e38888a75c070304ca5514197d4847a59a5c853f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/adb0197c106fad05c1fab28dbed5437133836c44",
-                "reference": "adb0197c106fad05c1fab28dbed5437133836c44",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e38888a75c070304ca5514197d4847a59a5c853f",
+                "reference": "e38888a75c070304ca5514197d4847a59a5c853f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.0.0"
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "ext-hash": "*",
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "*"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "doctrine/annotations": "^1.2",
+                "phpcompatibility/php-compatibility": "^9.3.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.5.6",
+                "yoast/phpunit-polyfills": "^0.2.0"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "class.phpmailer.php",
-                    "class.pop3.php",
-                    "class.smtp.php"
-                ]
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-2.1"
+                "LGPL-2.1-only"
             ],
             "authors": [
                 {
-                    "name": "Jim Jagielski",
-                    "email": "jimjag@gmail.com"
-                },
-                {
                     "name": "Marcus Bointon",
                     "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
                 },
                 {
                     "name": "Andy Prevost",
@@ -125,9 +138,15 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v5.2.4"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.2.0"
             },
-            "time": "2013-02-21T11:44:28+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/Synchro",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-25T15:24:57+00:00"
         },
         {
             "name": "phpoption/phpoption",
