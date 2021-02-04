@@ -1,4 +1,6 @@
 <?php
+  require_once "setup.php";
+
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
 	//Controla quando mostrar o paragrafo de erro
@@ -119,7 +121,7 @@
 
 									<thead>
 										<tr>
-											<th class='header-link'><a href='http://www.recibeira.esy.es'><img src='assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
+											<th class='header-link'><a href='".$_ENV['APP_URL']."'><img src='assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
 										</tr>
 									</thead>
 
@@ -130,11 +132,11 @@
 
 										<tr>
 											<td class='mail-content'>
-						                        <p>Digite o código abaixo na página de confirmação de email. Caso a tenha fechado, <a href='http://www.recibeira.esy.es/confirmar_email.php?key=$email_hash'>clique aqui</a> para ir até ela.</p>
+						                        <p>Digite o código abaixo na página de confirmação de email. Caso a tenha fechado, <a href='".$_ENV['APP_URL']."/confirmar_email.php?key=$email_hash'>clique aqui</a> para ir até ela.</p>
 
 						                        <p class='cod'><span>$cod</span></p>
 
-						                        <p>Caso não tenha iniciado cadastro no site do <a href='http://www.recibeira.esy.es'>Recibeira</a>, é possível que estejam usando seu email sem sua autorização.</p>
+						                        <p>Caso não tenha iniciado cadastro no site do <a href='".$_ENV['APP_URL']."'>Recibeira</a>, é possível que estejam usando seu email sem sua autorização.</p>
 						                    </td>
 										</tr>
 									</tbody>

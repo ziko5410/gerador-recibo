@@ -1,4 +1,6 @@
 <?php
+  require_once "setup.php";
+
 	//mensagem de erro exibida ao usuário
 	$form_error = "";
 
@@ -146,7 +148,7 @@
 
 									<thead>
 										<tr>
-											<th class='header-link'><a href='http://www.recibeira.esy.es'><img src='http://recibeira.esy.es/assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
+											<th class='header-link'><a href='".$_ENV['APP_URL']."'><img src='".$_ENV['APP_URL']."/assets/img/brand-icon.png'/><span>Recibeira</span></a></th>
 										</tr>
 									</thead>
 
@@ -158,9 +160,9 @@
 										<tr>
 											<td class='mail-content'>
 						                        <p>Clique no botão abaixo para redefinir sua senha ou copie e cole o link no seu navegador.</p>
-						                        <a href='http://www.recibeira.esy.es/redefinir_senha?e=$email_hash'>http://www.recibeira.esy.es/redefinir_senha.php?e=".$email_hash."</a>
+						                        <a href='".$_ENV['APP_URL']."/redefinir_senha?e=$email_hash'>".$_ENV['APP_URL']."/redefinir_senha.php?e=".$email_hash."</a>
 
-						                        <a href='http://www.recibeira.esy.es/redefinir_senha.php?e=$email_hash' class='btn'>Redefinir</a><br>
+						                        <a href='".$_ENV['APP_URL']."/redefinir_senha.php?e=$email_hash' class='btn'>Redefinir</a><br>
 
 						                        <p>Digite o código abaxo quando solicitado.</p>
 

@@ -1,9 +1,9 @@
 <?php
-	
+
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 		if( (require_once "assets/libs/fpdf/fpdf.php") == true && (require_once "assets/scripts/connect.php") == true && (require_once "assets/scripts/check_session.php") == true && (require_once "assets/scripts/utils.class.php") == true ){
-			
+
 			if( ( isset($_GET["c"]) && !empty($_GET["c"]) ) && ( isset($_GET["key"]) && !empty($_GET["key"]) ) ){
 
 				$card_id = $_GET["c"];
@@ -111,7 +111,7 @@
 									$username = $_SESSION['user'];
 									$pdf->SetTitle(utf8_decode("Recibo de $username - $obj[$BD_Data_recibo_field]") , true);
 									$pdf->SetAuthor($username, true);
-									$pdf->SetCreator("Recibeira.esy.es", true);
+									$pdf->SetCreator("Recibeira", true);
 
 									$pdf->AddPage();
 
@@ -141,7 +141,7 @@
 									exit;
 
 								}//if($resultado->num_rows > 0)
-								
+
 							}//if($sql->execute())
 
 						}//if($sql)
