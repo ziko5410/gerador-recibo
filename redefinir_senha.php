@@ -184,7 +184,7 @@
 
 		<title>Redefinir senha - Recibeira</title>
 
-		<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/form.css">
@@ -245,7 +245,7 @@
 		<?php include "assets/snippets/footer.php"; ?>
 
 		<!--JavaScript-->
-		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
 		<script src="js/form_validation.js" type="text/javascript"></script>
 

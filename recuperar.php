@@ -161,7 +161,7 @@
 						                        <a href='http://www.recibeira.esy.es/redefinir_senha?e=$email_hash'>http://www.recibeira.esy.es/redefinir_senha.php?e=".$email_hash."</a>
 
 						                        <a href='http://www.recibeira.esy.es/redefinir_senha.php?e=$email_hash' class='btn'>Redefinir</a><br>
-						                      
+
 						                        <p>Digite o código abaxo quando solicitado.</p>
 
 						                        <p class='cod'><span>$cod</span></p>
@@ -197,7 +197,7 @@
 					$mail -> Subject=$assunto;
 					$mail -> Body=$mensagem;
 					$mail -> AddAddress($email);
-					
+
 					if($mail -> Send()){
 						return true;
 					}
@@ -226,11 +226,11 @@
 
 							$cod = $obj[$BD_Acc_code_field];
 							$hash = $obj[$BD_Email_hash_field];
-							
+
 							if(!sendRecoverMail($email, $cod, $hash)){
 								$form_error="Não foi possível enviar o email. Atualize a página e se o problema persistir tente novamente mais tarde.";
 							}
-							
+
 						}
 						else{
 							$form_error="Parece que você ainda não criou uma conta. <a href='registrar.php'>Crie uma agora.</a>";
@@ -240,7 +240,7 @@
 						$form_error="Desculpe, ocorreu um erro no servidor. Tente novamente mais tarde.";
 					}
 				}//if(mysqli_connect_errno())
-			
+
 			}//if(empty($email))
 
 		}//if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -266,7 +266,7 @@
 
 		<title>Recuperar senha - Recibeira</title>
 
-		<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/form.css">
@@ -294,7 +294,7 @@
 				<h2 class="form-signin-heading">Recuperar senha</h2>
 
 				<p>Diga-nos seu email cadastrado para te enviarmos um link de recuperação da sua senha.</p>
-				
+
 				<?php if($_SERVER["REQUEST_METHOD"] == "POST"){ ?>
 					<p class="info form-error" style="display: block"><?php echo $form_error; ?></p>
 				<?php }else{ ?>
@@ -317,9 +317,9 @@
 		</div>
 
 		<?php include "assets/snippets/footer.php"; ?>
-		
+
 		<!--JavaScript-->
-		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="js/form_validation.js" type="text/javascript"></script>
 
 	</body>

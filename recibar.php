@@ -15,7 +15,7 @@
 	if( ((require_once "assets/scripts/connect.php") == true)  && ((require_once "assets/scripts/utils.class.php") == true)  && ((require_once "assets/scripts/check_session.php") == true) ){
 
 		if($_SERVER["REQUEST_METHOD"] == "GET"){
-			
+
 			if( isset($_GET["card"]) && !empty($_GET["card"])){
 
 				$profile_id = $_GET["card"];
@@ -133,13 +133,13 @@
 				if(empty($contrato_inicio)){
 
 					$form_error = "Data de início do contrato inválida. Verifique os dias e o mês.";
-						
+
 				}
 
 				if(empty($contrato_termino)){
 
 					$form_error = "Data de término do contrato inválida. Verifique os dias e o mês.";
-						
+
 				}
 
 				//Validação do valor do aluguel
@@ -235,32 +235,32 @@
 				if(empty($form_error)){
 					//Salva os dados do recibo
 
-					$sql = $BD_Connection->prepare("INSERT INTO $BD_Profiles_table 
-						($BD_Profile_user_id_field, 
-						$BD_Profile_name_field, 
-						$BD_Locador_field, 
-						$BD_Locatario_field, 
-						$BD_Inicio_contrato_field, 
-						$BD_Termino_contrato_field, 
-						$BD_Aluguel_valor_field, 
-						$BD_Rua_field, 
-						$BD_Numero_casa_field, 
-						$BD_Bairro_field, 
-						$BD_Cidade_field, 
-						$BD_Casa_fundo_field, 
-						$BD_Referente_from_field, 
-						$BD_Referente_to_field, 
+					$sql = $BD_Connection->prepare("INSERT INTO $BD_Profiles_table
+						($BD_Profile_user_id_field,
+						$BD_Profile_name_field,
+						$BD_Locador_field,
+						$BD_Locatario_field,
+						$BD_Inicio_contrato_field,
+						$BD_Termino_contrato_field,
+						$BD_Aluguel_valor_field,
+						$BD_Rua_field,
+						$BD_Numero_casa_field,
+						$BD_Bairro_field,
+						$BD_Cidade_field,
+						$BD_Casa_fundo_field,
+						$BD_Referente_from_field,
+						$BD_Referente_to_field,
 						$BD_Data_recibo_field)
-						VALUES 
+						VALUES
 						(? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)");
 
 					if($sql){
-						
+
 						$user_id = $_SESSION["id"];
 						$sql->bind_param('isssssdsississs', $user_id, $perfil_nome, $locador, $locatario, $contrato_inicio, $contrato_termino, $valor_aluguel, $rua, $numero, $bairro, $cidade, $casa_fundo, $referente_from, $referente_to, $data_recibo);
 
 						if($sql->execute()){
-							
+
 							$sql = $BD_Connection->prepare("SELECT max($BD_Profile_id_field) FROM $BD_Profiles_table WHERE $BD_Profile_user_id_field = ?");
 
 							if($sql){
@@ -334,7 +334,7 @@
 
 		<title>Criar perfil - Recibeira</title>
 
-		<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/form.css">
@@ -412,9 +412,9 @@
 						$gravatar_email = md5( strtolower( trim( $_SESSION["email"] ) ) );
 						$user = isset($_SESSION["user"]) ? $_SESSION["user"] : "Usuário";
 
-						echo "<a class='navbar-brand' href='home.php'><span> $user </span><img src='http://www.gravatar.com/avatar/$gravatar_email?s=36&d=mm' data-toggle='tooltip' data-placement='left' title='Sua imagem de usuário é obtida através do seu email, se estiver cadastrado no site Gravatar.com' class='profile-picture' alt='Foto do usuário'/></a>";
+						echo "<a class='navbar-brand' href='home.php'><span> $user </span><img src='//www.gravatar.com/avatar/$gravatar_email?s=36&d=mm' data-toggle='tooltip' data-placement='left' title='Sua imagem de usuário é obtida através do seu email, se estiver cadastrado no site Gravatar.com' class='profile-picture' alt='Foto do usuário'/></a>";
 					?>
-				
+
 				</div>
 			</div>
 		</nav>
@@ -439,18 +439,18 @@
 					<label for='inNomePerfil' class='sr-only'>Locador<span class='info'>*</span></label>
 					<input type='text' id='inNomePerfil' name='nomeperfil' class='nome-perfil' data-toggle='tooltip' data-placement='bottom' title='Nome do perfil.' placeholder='Nome do perfil' maxlength='30' value='$obj[$BD_Profile_name_field]' required autofocus>
 
-					<p class='info'>Campos marcados com * são obrigatórios.</p>"; 
-					
-					if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET'){ 
+					<p class='info'>Campos marcados com * são obrigatórios.</p>";
+
+					if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET'){
 						echo "<p class='info form-error' style='display: block'>$form_error</p>";
 					}
-					else{ 
+					else{
 						echo "<p class='info form-error'></p>";
-					} 
+					}
 
-					echo 
+					echo
 					"<fieldset class='col-md-4'>
-						
+
 						<legend>Informações gerais</legend>
 
 						<label for='inLocador'>Locador<span class='info'>*</span></label>
@@ -471,7 +471,7 @@
 					</fieldset>
 
 					<fieldset class='col-md-4'>
-						
+
 						<legend>Endereço do imóvel alugado</legend>
 
 						<label for='inRua'>Rua<span class='info'>*</span></label>
@@ -502,7 +502,7 @@
 
 						<div data-toggle='tooltip' data-placement='bottom' title='Intervalo de meses aos quais o recibo de refere, normalmente de um mês.'>
 							<input type='date' id='inReferenteA' name='referentea' class='form-control bom-senso data' max='2038-01-01' min='1901-01-01' value='$obj[$BD_Referente_from_field]' required>
-							
+
 							<label for='inReferente'>a</label>
 							<input type='date' id='inReferente' name='referenteb' class='form-control bom-senso data' max='2038-01-01' min='1901-01-01' value='$obj[$BD_Referente_to_field]' required>
 						</div>
@@ -521,7 +521,7 @@
 				else{
 					$usuario = "";
 					$default_name = "";
-					
+
 					if(!mysqli_connect_errno()){
 
 						//Busca o nome do usuário para colocar no título padrão do cartão
@@ -561,18 +561,18 @@
 					<label for='inNomePerfil' class='sr-only'>Locador<span class='info'>*</span></label>
 					<input type='text' id='inNomePerfil' name='nomeperfil' class='nome-perfil' data-toggle='tooltip' data-placement='bottom' title='Nome do perfil.' placeholder='Nome do perfil' maxlength='30' value='$default_name' required autofocus>
 
-					<p class='info'>Campos marcados com * são obrigatórios.</p>"; 
-					
-					if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
+					<p class='info'>Campos marcados com * são obrigatórios.</p>";
+
+					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 						echo "<p class='info form-error' style='display: block'>$form_error</p>";
 					}
-					else{ 
+					else{
 						echo "<p class='info form-error'></p>";
-					} 
+					}
 
-					echo 
+					echo
 					"<fieldset class='col-md-4'>
-						
+
 						<legend>Informações gerais</legend>
 
 						<label for='inLocador'>Locador<span class='info'>*</span></label>
@@ -593,7 +593,7 @@
 					</fieldset>
 
 					<fieldset class='col-md-4'>
-						
+
 						<legend>Endereço do imóvel alugado</legend>
 
 						<label for='inRua'>Rua<span class='info'>*</span></label>
@@ -624,7 +624,7 @@
 
 						<div data-toggle='tooltip' data-placement='bottom' title='Intervalo de meses aos quais o recibo de refere, normalmente de um mês.'>
 							<input type='date' id='inReferenteA' name='referentea' class='form-control bom-senso data' max='2038-01-01' min='1901-01-01' required>
-							
+
 							<label for='inReferente'>a</label>
 							<input type='date' id='inReferente' name='referenteb' class='form-control bom-senso data' max='2038-01-01' min='1901-01-01' required>
 						</div>
@@ -658,8 +658,8 @@
 		<?php include "assets/snippets/footer.php"; ?>
 
 		<!--JavaScript-->
-		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
-		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
 		<script src="js/form_validation.js" type="text/javascript"></script>
 
@@ -707,7 +707,7 @@
 				else{
 					$("#inData").val("");
 				}
-				
+
 			}
 
 		</script>

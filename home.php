@@ -2,7 +2,7 @@
 	session_start();
 
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
-		
+
 		if( isset($_GET["e"]) && !empty($_GET["e"]) ){
 
 			if($_GET["e"] == 1){
@@ -53,7 +53,7 @@
 
 		<title>Minha área - Recibeira</title>
 
-		<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/geral.css">
@@ -169,15 +169,15 @@
 						$gravatar_email = md5( strtolower( trim($_SESSION["email"]) ) );
 						$user = isset($_SESSION["user"]) ? $_SESSION["user"] : "Usuário";
 
-						echo "<a class='navbar-brand' href='home.php'><span> $user </span><img src='http://www.gravatar.com/avatar/$gravatar_email?s=36&d=mm' data-toggle='tooltip' data-placement='left' title='Sua imagem de usuário é obtida através do seu email, se estiver cadastrado no site Gravatar.com' class='profile-picture' alt='Foto do usuário'/></a>";
+						echo "<a class='navbar-brand' href='home.php'><span> $user </span><img src='//www.gravatar.com/avatar/$gravatar_email?s=36&d=mm' data-toggle='tooltip' data-placement='left' title='Sua imagem de usuário é obtida através do seu email, se estiver cadastrado no site Gravatar.com' class='profile-picture' alt='Foto do usuário'/></a>";
 					?>
-				
+
 				</div>
 			</div>
 		</nav>
 		<!--FIM BARRA DE NAVEGAÇÃO-->
 
-		<div id="cards" class="container">			
+		<div id="cards" class="container">
 
 			<?php
 
@@ -220,39 +220,39 @@
 								if(($i + 1) % 2 == 0){
 
 									echo $card->mkRightCard(
-										$obj[$BD_Profile_id_field], 
-										$obj[$BD_Profile_name_field], 
-										$obj[$BD_Locador_field], 
-										$obj[$BD_Locatario_field], 
-										$obj[$BD_Aluguel_valor_field], 
+										$obj[$BD_Profile_id_field],
+										$obj[$BD_Profile_name_field],
+										$obj[$BD_Locador_field],
+										$obj[$BD_Locatario_field],
+										$obj[$BD_Aluguel_valor_field],
 										"$obj[$BD_Rua_field], $obj[$BD_Numero_casa_field] - $obj[$BD_Bairro_field] - $obj[$BD_Cidade_field]", /*Endereço*/
 										"$obj[$BD_Referente_from_field] a $obj[$BD_Referente_to_field]"); /*Referente*/
 
 								}
 								//Lado esquerdo = impar
-								else{	
+								else{
 									//Checa se é o último card
 									if($i == count($array)-1){
 										echo $card->mkLastOddCard(
-											$obj[$BD_Profile_id_field], 
-											$obj[$BD_Profile_name_field], 
-											$obj[$BD_Locador_field], 
-											$obj[$BD_Locatario_field], 
-											$obj[$BD_Aluguel_valor_field], 
+											$obj[$BD_Profile_id_field],
+											$obj[$BD_Profile_name_field],
+											$obj[$BD_Locador_field],
+											$obj[$BD_Locatario_field],
+											$obj[$BD_Aluguel_valor_field],
 											"$obj[$BD_Rua_field], $obj[$BD_Numero_casa_field] - $obj[$BD_Bairro_field] - $obj[$BD_Cidade_field]", /*Endereço*/
 											"$obj[$BD_Referente_from_field] a $obj[$BD_Referente_to_field]"); /*Referente*/
 									}
 									else{
 										echo $card->mkLeftCard(
-											$obj[$BD_Profile_id_field], 
-											$obj[$BD_Profile_name_field], 
-											$obj[$BD_Locador_field], 
-											$obj[$BD_Locatario_field], 
-											$obj[$BD_Aluguel_valor_field], 
+											$obj[$BD_Profile_id_field],
+											$obj[$BD_Profile_name_field],
+											$obj[$BD_Locador_field],
+											$obj[$BD_Locatario_field],
+											$obj[$BD_Aluguel_valor_field],
 											"$obj[$BD_Rua_field], $obj[$BD_Numero_casa_field] - $obj[$BD_Bairro_field] - $obj[$BD_Cidade_field]", /*Endereço*/
 											"$obj[$BD_Referente_from_field] a $obj[$BD_Referente_to_field]"); /*Referente*/
 									}
-									
+
 								}
 
 							}//if($i < $size)
@@ -316,7 +316,7 @@
 							$paginacao .= "</ul>";
 
 							echo $paginacao;
-						
+
 						}
 					}
 
@@ -338,7 +338,7 @@
 									</div>
 									<button type='button' class='btn btn-default btn-block' onclick='voltar();'>Ver todos</button>
 								</form>";
-							
+
 							if( (require_once "assets/scripts/cards.class.php") == true && (require_once "assets/scripts/utils.class.php") == true ){
 
 								$sql = $BD_Connection->prepare("SELECT * FROM $BD_Profiles_table WHERE $BD_Profile_name_field LIKE ? OR $BD_Locador_field LIKE ? OR $BD_Locatario_field LIKE ?;");
@@ -353,7 +353,7 @@
 										$sql = null;
 
 										if($resultado->num_rows > 0){
-	
+
 											//Array com todas as linhas do result set da query
 											$set = array();
 											while($obj = $resultado->fetch_assoc()){
@@ -466,8 +466,8 @@
 		<?php include "assets/snippets/footer.php"; ?>
 
 		<!--JavaScript-->
-		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
-		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
 
 		<script type="text/javascript">
@@ -478,7 +478,7 @@
 			});
 
 			function voltar(){
-				history.go(-1); 
+				history.go(-1);
 				document.getElementById('inTermo').value() = '';
 			}
 
