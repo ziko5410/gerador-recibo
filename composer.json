@@ -5,6 +5,7 @@
     "phpmailer/phpmailer": "^6.2"
   },
   "scripts": {
+    "start": "php -S localhost:3333",
     "post-install-cmd": [
       "php migrate.php"
     ]
