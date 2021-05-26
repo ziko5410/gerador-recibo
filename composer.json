@@ -6,8 +6,12 @@
   },
   "scripts": {
     "start": "php -S localhost:3333",
+    "migrate": "php migrate.php",
     "post-install-cmd": [
       "php migrate.php"
     ]
+  },
+  "config": {
+    "process-timeout": 0
   }
 }
