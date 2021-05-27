@@ -1,4 +1,5 @@
 <?php
+require_once "setup.php";
 require_once "assets/scripts/connect.php";
 
 function parseScript($script) {
@@ -25,12 +26,17 @@ function executeScriptFile($fileName, $dbConnection) {
   $script = file_get_contents($fileName);
   $statements = parseScript($script);
   foreach($statements as $statement) {
+    echo "\nExecuting sql:\n" . $statement;
     mysqli_query($dbConnection, $statement);
+    echo "\n" . mysqli_error($dbConnection);
+    echo "\n----";
   }
 }
 
-printf('Executing database migrations...');
+echo "Executing database migrations...";
+
+echo "\nDatabase host: " . $_ENV['DB_HOST'];
 
 executeScriptFile(__DIR__.'/schema.sql', $BD_Connection);
 
-printf('Finished migrating.');
+echo "\nFinished migrating.";
