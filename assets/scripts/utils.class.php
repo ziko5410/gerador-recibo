@@ -59,6 +59,14 @@
       return $newDateString;
     }
 
+    public function emptyString($string) {
+      return !isset($string) || empty($string);
+    }
+
+    public function repeat($value, $amount) {
+      return array_fill(0, $amount, $value);
+    }
+
 	}
 
 ?>

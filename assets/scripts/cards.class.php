@@ -27,9 +27,10 @@
 						</div>
 
 						<div>
-							<a href='recibar.php?card=$cardId' class='btn btn-primary '>Editar</a>
-							<a target='_blank' href='gera_pdf.php?$query_string' class='btn btn-default '>Abrir documento</a>
+							<a href='recibar.php?card=$cardId' class='btn btn-primary'>Editar</a>
+							<a target='_blank' href='gera_pdf.php?$query_string' class='btn btn-default'>Abrir documento</a>
 							<a class='btn btn-danger' href='delete_profile.php?$query_string'>Apagar</a>
+              <a class='btn btn-info pull-right' href='gerar_multi.php?$query_string'>Gerar vários</a>
 						</div>
 
 					</div>";

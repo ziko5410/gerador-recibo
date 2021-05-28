@@ -13,6 +13,7 @@
   //Tabela
   $BD_Users_table = "usuarios";
   $BD_Profiles_table = "user_profiles";
+  $BD_Recibos_table = "recibos";
 
   //Campos usuário
   $BD_Id_field = "id";//PK
@@ -43,6 +44,14 @@
   $BD_Referente_to_field = "referente_to";
   $BD_Data_recibo_field = "data_recibo";
 
+  //Campos Recibos
+  $BD_Recibo_id_field = "recibo_id";//PK
+  $BD_Recibo_profile_id_field = "profile_id";//FK
+  $BD_Recibo_Referente_from_field = "referente_from";
+  $BD_Recibo_Referente_to_field = "referente_to";
+  $BD_Recibo_Data_recibo_field = "data_recibo";
+  $BD_Recibo_temporario_field = "temporario";
+
   if (!empty($BD_Connection_url)) {
     // Extrai os campos da connection string
     $BD_Database = substr($BD_Connection_url, strpos($BD_Connection_url, '/', 9) + 1);
@@ -56,5 +65,7 @@
   mysqli_select_db($BD_Connection, $BD_Database);
 
   mysqli_set_charset($BD_Connection,"utf8");
+
+  require_once "database_helper.class.php"
 
 ?>

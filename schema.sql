@@ -24,10 +24,21 @@ create table IF NOT EXISTS user_profiles (
   numero_casa int(5) NOT NULL,
   bairro VARCHAR(40) NOT NULL,
   cidade VARCHAR(30) NOT NULL,
-  casa_fundo TINYINT(1) NOT NULL,
+  casa_fundo TINYINT(1) NOT NULL, /* boolean */
   referente_from DATE NOT NULL,
   referente_to DATE NOT NULL,
   data_recibo DATE NOT NULL,
   PRIMARY KEY (profile_id),
   FOREIGN KEY (user_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE IF NOT EXISTS recibos (
+	recibo_id INT AUTO_INCREMENT NOT NULL UNIQUE,
+	profile_id INT NOT NULL,
+  referente_from DATE NOT NULL,
+  referente_to DATE NOT NULL,
+  data_recibo DATE NOT NULL,
+  temporario TINYINT(1) NOT NULL, /* boolean */
+	PRIMARY KEY (recibo_id),
+  FOREIGN KEY (profile_id) REFERENCES user_profiles(profile_id)
 );

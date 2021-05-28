@@ -4,7 +4,7 @@
 		session_start();
 	}
 
-	$loggedin_only_pages = ["home.php", "recibar.php", "gera_pdf.php", "logout.php", "delete_profile.php"];
+	$loggedin_only_pages = ["home.php", "recibar.php", "gera_pdf.php", "logout.php", "delete_profile.php", "gerar_multi.php"];
 
 	function arrayContainsString($array, $str){
 
