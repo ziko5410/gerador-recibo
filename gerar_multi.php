@@ -252,9 +252,9 @@
             for($i = 0; $i < sizeof($recibosTemp); $i++) {
               $reciboTemp = $recibosTemp[$i];
 
-              $dataRecibo = (new DateTime($reciboTemp[$BD_Recibo_Data_recibo_field]))->format('d/m/Y');
-              $dataReciboFrom = (new DateTime($reciboTemp[$BD_Recibo_Referente_from_field]))->format('d/m/Y');
-              $dataReciboTo = (new DateTime($reciboTemp[$BD_Recibo_Referente_to_field]))->format('d/m/Y');
+              $dataRecibo = $utils->formatDate("Y-m-d", $reciboTemp[$BD_Recibo_Data_recibo_field], "d/m/Y");
+              $dataReciboFrom = $utils->formatDate("Y-m-d", $reciboTemp[$BD_Recibo_Referente_from_field], "d/m/Y");
+              $dataReciboTo = $utils->formatDate("Y-m-d", $reciboTemp[$BD_Recibo_Referente_to_field], "d/m/Y");
 
               $query_string_hash = sha1(md5("c=$profile_id&key="));
 			        $query_string = "c=$profile_id&tmpId=$reciboTemp[$BD_Recibo_id_field]&key=$query_string_hash";
@@ -272,7 +272,10 @@
         </ul>
       </div>
 
-      <?php } ?>
+      <?php }
+
+        $BD_Connection->close();
+      ?>
 
 		</div>
 

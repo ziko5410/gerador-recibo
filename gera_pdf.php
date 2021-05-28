@@ -4,6 +4,9 @@
 
 		if( (require_once "assets/libs/fpdf/fpdf.php") == true && (require_once "assets/scripts/connect.php") == true && (require_once "assets/scripts/check_session.php") == true && (require_once "assets/scripts/utils.class.php") == true ){
 
+      $utils = new Utils();
+      $dbHelper = new DatabaseHelper($BD_Connection);
+
 			if( ( isset($_GET["c"]) && !empty($_GET["c"]) ) && ( isset($_GET["key"]) && !empty($_GET["key"]) ) ){
 
 				$card_id = $_GET["c"];
@@ -81,72 +84,91 @@
 						$pdf->Ln(6);
 					}
 
-					if(!mysqli_connect_errno()){
+          $idReciboTemporario = $_GET["tmpId"];
+          $isTemporario = !$utils->emptyString($idReciboTemporario);
 
-						$sql = $BD_Connection->prepare("SELECT * FROM $BD_Profiles_table WHERE $BD_Profile_user_id_field = ? AND $BD_Profile_id_field  = ?");
+          if(!$isTemporario) {
+            $recibos = $dbHelper->select(
+              "SELECT * FROM $BD_Profiles_table WHERE $BD_Profile_user_id_field = ? AND $BD_Profile_id_field  = ?",
+              "ii",
+              array($_SESSION["id"], $card_id)
+            );
+          }
+          else {
+            $sql =  "SELECT p.$BD_Profile_id_field, ";
+            $sql .=        "p.$BD_Profile_user_id_field, ";
+            $sql .=        "p.$BD_Profile_name_field, ";
+            $sql .=        "p.$BD_Locador_field, ";
+            $sql .=        "p.$BD_Locatario_field, ";
+            $sql .=        "p.$BD_Inicio_contrato_field, ";
+            $sql .=        "p.$BD_Termino_contrato_field, ";
+            $sql .=        "p.$BD_Aluguel_valor_field, ";
+            $sql .=        "p.$BD_Rua_field, ";
+            $sql .=        "p.$BD_Numero_casa_field, ";
+            $sql .=        "p.$BD_Bairro_field, ";
+            $sql .=        "p.$BD_Cidade_field, ";
+            $sql .=        "p.$BD_Casa_fundo_field, ";
+            $sql .=        "r.$BD_Recibo_Referente_from_field, ";
+            $sql .=        "r.$BD_Recibo_Referente_to_field, ";
+            $sql .=        "r.$BD_Recibo_Data_recibo_field ";
+            $sql .= "FROM $BD_Profiles_table p ";
+            $sql .= "INNER JOIN $BD_Recibos_table r on r.$BD_Recibo_profile_id_field  = p.$BD_Profile_id_field ";
+            $sql .= "WHERE p.$BD_Profile_user_id_field = ? AND p.$BD_Profile_id_field  = ? AND r.$BD_Recibo_id_field = ? AND r.$BD_Recibo_temporario_field = ?";
 
-						if($sql){
+            $recibos = $dbHelper->select(
+              $sql,
+              "iiii",
+              array($_SESSION["id"], $card_id, $idReciboTemporario, 1)
+            );
+          }
 
-							$sql->bind_param('ii', $_SESSION["id"], $card_id);
+          if(sizeof($recibos) > 0) {
+            $recibo = $recibos[0];
 
-							if($sql->execute()){
+            $pdf = new FPDF('P', 'cm', 'A4');//Padrão A4 porta-retrato, medidas em mm
+            $utils = new Utils();
 
-								$resultado = $sql->get_result();
-								$sql = null;
+            $pdf->SetCompression(true);
 
-								if($resultado->num_rows > 0){
+            $pdf->SetMargins(2, 2);
 
-									$obj = $resultado->fetch_assoc();
-									mysqli_free_result($resultado);
+            $recibo[$BD_Data_recibo_field] = $utils->formatDate("Y-m-d", $recibo[$BD_Data_recibo_field], "d/m/Y");
 
-									$pdf = new FPDF('P', 'cm', 'A4');//Padrão A4 porta-retrato, medidas em mm
-									$utils = new Utils();
+            $username = $_SESSION['user'];
+            $pdf->SetTitle(utf8_decode("Recibo de $username - $recibo[$BD_Data_recibo_field]") , true);
+            $pdf->SetAuthor($username, true);
+            $pdf->SetCreator("Recibeira", true);
 
-									$pdf->SetCompression(true);
+            $pdf->AddPage();
 
-									$pdf->SetMargins(2, 2);
+            for($i = 0; $i < 2; $i++){
+              mkPDF(
+                  $pdf,
+                $recibo[$BD_Locador_field],
+                $recibo[$BD_Locatario_field],
+                $recibo[$BD_Inicio_contrato_field],
+                $recibo[$BD_Termino_contrato_field],
+                $recibo[$BD_Aluguel_valor_field],
+                $recibo[$BD_Rua_field],
+                $recibo[$BD_Numero_casa_field],
+                $recibo[$BD_Bairro_field],
+                $recibo[$BD_Cidade_field],
+                $recibo[$BD_Casa_fundo_field],
+                $recibo[$BD_Referente_from_field],
+                $recibo[$BD_Referente_to_field],
+                $recibo[$BD_Data_recibo_field]);
+            }
 
-									$obj[$BD_Data_recibo_field] = $utils->formatDate("Y-m-d", $obj[$BD_Data_recibo_field], "d/m/Y");
+            //Envia o pdf para o client
+            $pdf->Output('I', "Recibo_$recibo[$BD_Data_recibo_field].pdf", true);
+          }
+          else {
+            echo "<p>Não há recibo para gerar.</p>";
+          }
 
-									$username = $_SESSION['user'];
-									$pdf->SetTitle(utf8_decode("Recibo de $username - $obj[$BD_Data_recibo_field]") , true);
-									$pdf->SetAuthor($username, true);
-									$pdf->SetCreator("Recibeira", true);
+          $BD_Connection->close();
 
-									$pdf->AddPage();
-
-									for($i = 0; $i < 2; $i++){
-										mkPDF(
-										    $pdf,
-											$obj[$BD_Locador_field],
-											$obj[$BD_Locatario_field],
-											$obj[$BD_Inicio_contrato_field],
-											$obj[$BD_Termino_contrato_field],
-											$obj[$BD_Aluguel_valor_field],
-											$obj[$BD_Rua_field],
-											$obj[$BD_Numero_casa_field],
-											$obj[$BD_Bairro_field],
-											$obj[$BD_Cidade_field],
-											$obj[$BD_Casa_fundo_field],
-											$obj[$BD_Referente_from_field],
-											$obj[$BD_Referente_to_field],
-											$obj[$BD_Data_recibo_field]);
-									}
-
-									//Envia o pdf para o client
-									$pdf->Output('I', "Recibo_$obj[$BD_Data_recibo_field].pdf", true);
-
-									$BD_Connection->close();
-
-									exit;
-
-								}//if($resultado->num_rows > 0)
-
-							}//if($sql->execute())
-
-						}//if($sql)
-
-					}//if(!mysqli_connect_errno())
+          exit;
 
 				}///if( strcmp($hash, $qhash) )
 				else{
