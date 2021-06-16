@@ -18,11 +18,13 @@
 
 				if( strcmp($hash, $qhash) == 0 ){
 
-					//Justifica o valor do aluguel. Ex: ALUGUEL........R$ x (a função adiciona os pontos ou outro caractere passado)
+					//Justifica o valor do aluguel. Ex: ALUGUEL........R$ x (a função adiciona os pontos)
 					function justificaValorAluguel($str, $fpdf_obj){
 
 						$fpdf = $fpdf_obj;
-						$tam_atual = $fpdf->GetStringWidth($str) - 0.2;//0.2 por causa do #
+            // Remove caracteres especiais para normalizar o tamanho da string
+            $str_tmp = preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($str));
+						$tam_atual = $fpdf->GetStringWidth($str_tmp) - 0.2;//0.2 por causa do #
 						$str_line = "";
 
 						while( ( $tam_atual + $fpdf->GetStringWidth($str_line) ) < $fpdf->GetPageWidth() - 4.3 ){
@@ -75,6 +77,7 @@
 						$pdf->Ln(1.7);
 
 						$pdf->Write($line_height, utf8_decode( justificaValorAluguel("ALUGUEL#R$ ".number_format($aluguel,2,",","."), $pdf) ) );
+            $pdf->Write($line_height, utf8_decode( justificaValorAluguel("LÍQUIDO#R$ ".number_format($aluguel,2,",","."), $pdf) ) );
 
 						$pdf->Ln(1.7);
 						$pdf->Write($line_height, utf8_decode("$cidade, $data \n"));

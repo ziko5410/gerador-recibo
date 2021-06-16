@@ -6,6 +6,7 @@
   },
   "scripts": {
     "start": "php -S localhost:3333",
+    "dev": "docker-compose up -d && composer start",
     "migrate": "php migrate.php",
     "post-install-cmd": [
       "php migrate.php"
