@@ -5,7 +5,7 @@
     "phpmailer/phpmailer": "^6.2"
   },
   "scripts": {
-    "start": "php -S localhost:3333",
+    "start": "php migrate.php && php -S 0.0.0.0:3333",
     "dev": "docker-compose up -d && composer start",
     "migrate": "php migrate.php",
     "post-install-cmd": [

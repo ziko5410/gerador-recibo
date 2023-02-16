@@ -14,3 +14,18 @@ services:
     container_name: mysql_admin
     ports:
       - 8080:8080
+  web:
+    image: fusrodah061/gerador-recibo
+    container_name: gerador-recibo
+    build: .
+    depends_on:
+      - mysql
+    env_file: .env
+    ports:
+      - 3333:3333
+    environment:
+      - DB_HOST=mysql:3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=recibeira
+      - COMPOSER_ALLOW_SUPERUSER=1
