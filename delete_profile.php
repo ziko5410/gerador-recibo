@@ -1,5 +1,5 @@
 <?php
-	
+
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 		if( (require_once "assets/libs/fpdf/fpdf.php") == true && (require_once "assets/scripts/connect.php") == true && (require_once "assets/scripts/check_session.php") == true && (require_once "assets/scripts/utils.class.php") == true ){

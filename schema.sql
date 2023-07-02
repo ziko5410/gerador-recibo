@@ -29,7 +29,7 @@ create table IF NOT EXISTS user_profiles (
   referente_to DATE NOT NULL,
   data_recibo DATE NOT NULL,
   PRIMARY KEY (profile_id),
-  FOREIGN KEY (user_id) REFERENCES usuarios(id)
+  FOREIGN KEY (user_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS recibos (
@@ -40,5 +40,5 @@ CREATE TABLE IF NOT EXISTS recibos (
   data_recibo DATE NOT NULL,
   temporario TINYINT(1) NOT NULL, /* boolean */
 	PRIMARY KEY (recibo_id),
-  FOREIGN KEY (profile_id) REFERENCES user_profiles(profile_id)
+  FOREIGN KEY (profile_id) REFERENCES user_profiles(profile_id) ON DELETE CASCADE
 );
